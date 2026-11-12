@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+
+/* ─── Palette: black · navy · dark blue · grey · white ─── */
+@theme {
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-ink: #05080f; /* near-black */
+  --color-navy-950: #070d1a;
+  --color-navy-900: #0a1428;
+  --color-navy-800: #0f1f3d;
+  --color-navy-700: #16305e;
+  --color-navy-600: #1e3f7a;
+  --color-signal: #4f86f7; /* dark-blue accent */
+  --color-ice: #9ec1ff; /* light blue */
+  --color-steel: #94a3b8; /* grey */
+  --color-paper: #f1f5f9; /* white */
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-ink);
+  scrollbar-width: thin;
+  scrollbar-color: #1e3f7a transparent;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background-color: var(--color-ink);
+  background-image: radial-gradient(ellipse 120% 80% at 50% 0%, #0f1f3d 0%, #070d1a 45%, #05080f 100%);
+  background-attachment: fixed;
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #4f86f7;
+  color: white;
+}
+
+/* Blueprint grid laid over the fixed 3D layer */
+.blueprint {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 100%);
+}
+
+/* Instrument panel */
+.panel {
+  position: relative;
+  background: linear-gradient(180deg, rgba(15, 31, 61, 0.55), rgba(7, 13, 26, 0.7));
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.panel-hover {
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.panel-hover:hover {
+  border-color: rgba(79, 134, 247, 0.6);
+  box-shadow: 0 0 0 1px rgba(79, 134, 247, 0.15), 0 20px 60px -20px rgba(79, 134, 247, 0.35);
+}
+
+.text-steel-gradient {
+  background: linear-gradient(100deg, #f1f5f9 0%, #9ec1ff 45%, #4f86f7 75%, #94a3b8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sweep 10s linear infinite;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+/* Horizontal ruler with tick marks */
+.ruler {
+  height: 10px;
+  background-image:
+    linear-gradient(90deg, rgba(148, 163, 184, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.25) 1px, transparent 1px);
+  background-size: 40px 10px, 8px 5px;
+  background-repeat: repeat-x;
+  background-position: 0 0, 0 0;
+}
+
+/* Scan line sweep for images / cards */
+.scan::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 30%;
+  background: linear-gradient(180deg, transparent, rgba(79, 134, 247, 0.18), transparent);
+  animation: scan 4s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  pointer-events: none;
+}
+
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes sweep {
+  to { background-position: 200% center; }
+}
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(400%); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollDot {
+  0% { transform: translateY(0); opacity: 1; }
+  70% { transform: translateY(14px); opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
