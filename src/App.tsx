@@ -1,4 +1,5 @@
 import About from './components/About'
+import Contact from './components/Contact'
 import Dock from './components/Dock'
 import Hero from './components/Hero'
 import ProjectIndex from './components/ProjectIndex'
@@ -18,6 +19,7 @@ export default function App() {
         <SelectedWork projects={data.projects} />
         <ProjectIndex projects={data.projects} />
         <About />
+        <Contact />
       </main>
       <Dock />
     </div>
