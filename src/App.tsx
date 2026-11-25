@@ -15,8 +15,11 @@ export default function App() {
 
   return (
     <div className="relative min-h-svh">
+      <a href="#work" className="sr-only z-[90] rounded-full bg-fg px-4 py-2 text-sm text-bg focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+        Skip to work
+      </a>
       <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[90vh]" aria-hidden />
-      <main className="relative mx-auto max-w-5xl px-5 md:px-8">
+      <main id="main" className="relative mx-auto max-w-5xl px-5 md:px-8">
         <Hero projects={data.projects} dark={theme === 'dark'} />
         <SelectedWork projects={data.projects} />
         <ProjectIndex projects={data.projects} />
