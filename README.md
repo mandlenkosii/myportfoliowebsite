@@ -1,18 +1,20 @@
-# Mandla Sikhosana — 3D Portfolio
+# Mandla Sikhosana — Portfolio
 
-An interactive, animated 3D portfolio built with **React 19, TypeScript, Vite, Three.js (React Three Fiber + Drei), Motion, Lenis and Tailwind CSS v4**.
+A minimal, interactive developer portfolio. **Live:** https://myportfoliowebsite-snowy.vercel.app
 
-## Features
+Built with **React 19, TypeScript, Vite, Three.js (React Three Fiber), Motion and Tailwind CSS v4**.
 
-- **Engineering-lab design:** a black, navy, dark-blue, grey and white palette, blueprint grid, IBM Plex type, spec-sheet panels with corner brackets, rulers and a HUD (live cursor coordinates, scroll depth gauge, Johannesburg time).
-- **3D instrument:** a gyroscope with graduated gimbal rings, a metallic core, a scanner sweep, orbiting particles and a blueprint grid floor. It reacts to the mouse and scroll position.
-- **Orbital index:** every GitHub repository is a node on a polar measurement grid, orbiting on a ring for its category. Drag to rotate, hover for a spec tag, click to open its technical dossier.
-- **Live GitHub data:** stats, dates and new repositories come from the GitHub API. Any new public repo shows up automatically with a "NEW" badge. If the API is unreachable, the curated data is used instead.
-- **Project cards:** 3D tilt cards with filters and search, and a detail modal with an in-page live-site preview.
-- **Capability lattice:** a rotating molecular model of technologies, with bonds between nearest neighbours, isolated by group.
-- **Journey timeline:** built from repository creation dates.
-- Custom cursor, magnetic buttons, smooth scrolling, a page loader and a scroll progress bar.
-- Responsive layout. Respects `prefers-reduced-motion`. Offscreen 3D canvases pause to save battery.
+## What's inside
+
+- **Particle orb:** a WebGL point sphere with a custom shader. It breathes, moves away from your cursor, and scatters when clicked.
+- **Selected work:** a bento grid of six flagship projects with cursor spotlights, headline metrics and small live diagrams (a disciplinary-process stepper for FairStep, an agent ring for Colleague Zero).
+- **Project index:** every public repo, synced live from the GitHub API, with sliding category tabs and expandable rows.
+- **About:** a short intro, working principles, a "now" note, a 2026 timeline and a toolkit marquee.
+- **Floating dock:** magnifying, macOS-style navigation with a light/dark toggle.
+- **Command palette:** press `Ctrl/Cmd + K` or `/` to jump to sections, open projects, copy the email address or switch theme.
+- Light and dark themes with no flash on load. Respects `prefers-reduced-motion`. Keyboard-accessible, with a skip link.
+
+New public repos appear automatically with a "new" badge. If the GitHub API is unreachable, the site falls back to the curated data.
 
 ## Run it
 
@@ -21,7 +23,7 @@ Requires Node.js 20+.
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # production build into dist/
+npm run build    # type-check + production build into dist/
 npm run preview  # serve the production build
 ```
 
@@ -29,15 +31,23 @@ npm run preview  # serve the production build
 
 | What | Where |
 | --- | --- |
-| Name, bio, email, LinkedIn, CV, photo, GitHub username | `src/config.ts` |
-| Project titles, descriptions, highlights, featured flags | `src/data/projects.ts` |
-| Skills list | `skills` in `src/data/projects.ts` |
-| Timeline captions | `milestones` in `src/components/Journey.tsx` |
-| Colours and fonts | `@theme` in `src/index.css` (3D colours: `C` in `src/three/BackgroundScene.tsx`) |
+| Name, bio, "now" note, email, links, CV | `src/config.ts` |
+| Project copy, featured flags, metrics | `src/data/projects.ts` |
+| Which projects fill the bento grid | `LAYOUT` in `src/components/SelectedWork.tsx` |
+| Timeline and principles | `src/components/About.tsx` |
+| Colours (light + dark) and fonts | `src/index.css` |
 
-To show a headshot instead of the ID schematic, put `photo.jpg` in `public/` and set `photo: '/photo.jpg'`. To add a CV, put `cv.pdf` in `public/` and set `links.cv: '/cv.pdf'`.
+## Project structure
 
-## Deploy (Vercel)
+```
+src/
+  components/   Hero, SelectedWork, ProjectIndex, About, Contact, Dock, CommandPalette …
+  three/Orb.tsx WebGL particle sphere (custom GLSL shader)
+  hooks/        useGitHub (live repo sync), useTheme, useInView
+  data/         curated project data and skills
+  config.ts     personal details
+```
 
-1. Push this folder to a new GitHub repo.
-2. Import it at vercel.com. The Vite preset is detected automatically (build: `npm run build`, output: `dist`).
+## Deploy
+
+The site is hosted on Vercel and connected to this repo, so every push to `main` redeploys it automatically.
