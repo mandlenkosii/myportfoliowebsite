@@ -11,9 +11,9 @@ import { ArrowIcon, ExternalIcon } from './icons'
 // Bento layout: which featured repo goes where, and which gets a live diagram.
 const LAYOUT: { repo: string; span: string; visual?: ReactNode }[] = [
   { repo: 'fairstep', span: 'md:col-span-4', visual: <StepperVisual /> },
-  { repo: 'The-Assess-to-Intervene-Colleague', span: 'md:col-span-2 md:row-span-2', visual: <AgentsVisual /> },
-  { repo: 'claimguard-raf', span: 'md:col-span-2' },
-  { repo: 'riverside-community-hub', span: 'md:col-span-2' },
+  { repo: 'The-Assess-to-Intervene-Colleague', span: 'md:col-span-2', visual: <AgentsVisual /> },
+  { repo: 'claimguard-raf', span: 'md:col-span-3' },
+  { repo: 'riverside-community-hub', span: 'md:col-span-3' },
   { repo: 'earth-dashboard', span: 'md:col-span-3' },
   { repo: 'seat-reservation-system', span: 'md:col-span-3' },
 ]

@@ -45,6 +45,7 @@
   --color-accent-soft: var(--accent-soft);
 }
 
+@layer base {
 html {
   background: var(--bg);
   scroll-behavior: smooth;
@@ -69,6 +70,7 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 6px;
+}
 }
 
 /* Faint dot grid behind the page */

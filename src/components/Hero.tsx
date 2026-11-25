@@ -17,18 +17,18 @@ function RotatingWord({ words }: { words: string[] }) {
   }, [words.length])
   return (
     <span className="relative inline-grid overflow-hidden align-bottom">
-      {/* invisible longest word reserves the width */}
-      <span className="invisible col-start-1 row-start-1">{words.reduce((a, b) => (b.length > a.length ? b : a))}</span>
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={words[i]}
-          className="col-start-1 row-start-1 text-accent"
+          layout
+          className="col-start-1 row-start-1 whitespace-nowrap text-accent"
           initial={{ y: '100%', opacity: 0, filter: 'blur(4px)' }}
           animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
           exit={{ y: '-100%', opacity: 0, filter: 'blur(4px)' }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
           {words[i]}
+          <span className="text-fg">.</span>
         </motion.span>
       </AnimatePresence>
     </span>
@@ -63,7 +63,7 @@ export default function Hero({ projects, dark }: { projects: Project[]; dark: bo
         </motion.h1>
 
         <motion.p {...fade(0.16)} className="mt-6 text-xl tracking-tight md:text-2xl">
-          I build software for <RotatingWord words={profile.audiences} />.
+          I build software for <RotatingWord words={profile.audiences} />
         </motion.p>
         <motion.p {...fade(0.22)} className="mt-3 max-w-md leading-relaxed text-muted">
           {profile.tagline}

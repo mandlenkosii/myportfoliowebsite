@@ -66,7 +66,7 @@ export default function ProjectIndex({ projects }: { projects: Project[] }) {
   const shown = all ? list : list.slice(0, PAGE)
 
   return (
-    <Section id="projects" eyebrow="02 — Index" title="Everything else on my GitHub." intro="Client sites, experiments and bootcamp exercises. Newest first, synced live from GitHub.">
+    <Section id="projects" eyebrow="02 — Index" title="Every project, newest first." intro="Flagship builds, client sites and bootcamp exercises, synced live from my GitHub. Tap a row for details.">
       {/* sliding pill tabs */}
       <div role="tablist" className="-mx-1 flex gap-1 overflow-x-auto px-1 pb-2">
         {TABS.map((t) => (

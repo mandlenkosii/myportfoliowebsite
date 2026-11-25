@@ -51,7 +51,7 @@ function LocalTime() {
 
 export default function Contact() {
   return (
-    <section id="contact" className="scroll-mt-6 pb-32 pt-20 md:pt-28">
+    <section id="contact" className="scroll-mt-6 pb-32 pt-8 md:pt-12">
       <Reveal>
         <div className="relative overflow-hidden rounded-[2rem] border border-line bg-card px-6 py-14 text-center md:px-12 md:py-20">
           <div className="dot-grid pointer-events-none absolute inset-0 opacity-70" aria-hidden />

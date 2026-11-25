@@ -43,6 +43,19 @@ export default function About() {
               <p className={i === 0 ? '' : 'text-muted'}>{p}</p>
             </Reveal>
           ))}
+          <dl className="!mt-10 space-y-5 border-t border-line pt-8">
+            {principles.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.05}>
+                <div className="grid grid-cols-[2rem_1fr] gap-x-2">
+                  <span className="font-mono text-xs leading-7 text-accent">{String(i + 1).padStart(2, '0')}</span>
+                  <div>
+                    <dt className="text-base font-semibold tracking-tight">{p.title}</dt>
+                    <dd className="mt-1 text-sm leading-relaxed text-muted">{p.body}</dd>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </dl>
         </div>
 
         <Reveal delay={0.1}>
@@ -62,18 +75,6 @@ export default function About() {
             ))}
           </ol>
         </Reveal>
-      </div>
-
-      <div className="mt-16 grid gap-3 md:grid-cols-3">
-        {principles.map((p, i) => (
-          <Reveal key={p.title} delay={i * 0.06}>
-            <div className="h-full rounded-3xl border border-line p-6">
-              <span className="font-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="mt-3 font-semibold tracking-tight">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
-            </div>
-          </Reveal>
-        ))}
       </div>
 
       <Reveal className="mt-12">
