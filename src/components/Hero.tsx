@@ -1,13 +1,14 @@
 import { AnimatePresence, motion } from 'motion/react'
-import { lazy, Suspense, useEffect, useState, type ReactElement } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState, type ReactElement } from 'react'
 import { profile } from '../config'
 import type { Project } from '../data/projects'
 import { useInView } from '../hooks/useInView'
 import { scrollToId } from '../lib'
 import NumberTicker from './NumberTicker'
+import ProjectSheet from './ProjectSheet'
 import { ArrowIcon, GitHubIcon, LinkedInIcon, MailIcon } from './icons'
 
-const Orb = lazy(() => import('../three/Orb'))
+const Galaxy = lazy(() => import('../three/Galaxy'))
 
 function RotatingWord({ words }: { words: string[] }) {
   const [i, setI] = useState(0)
@@ -43,6 +44,8 @@ const fade = (delay: number) => ({
 
 export default function Hero({ projects, dark }: { projects: Project[]; dark: boolean }) {
   const [orbRef, orbInView] = useInView<HTMLDivElement>('0px')
+  const [open, setOpen] = useState<Project | null>(null)
+  const close = useCallback(() => setOpen(null), [])
   const live = projects.filter((p) => p.live).length
 
   return (
@@ -120,15 +123,17 @@ export default function Hero({ projects, dark }: { projects: Project[]; dark: bo
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="relative order-1 mx-auto aspect-square w-full max-w-[280px] md:order-2 md:max-w-[460px]"
+        className="relative order-1 mx-auto aspect-square w-full max-w-[360px] md:order-2 md:max-w-[560px]"
       >
         <Suspense fallback={null}>
-          <Orb dark={dark} active={orbInView} />
+          <Galaxy projects={projects} dark={dark} active={orbInView} onSelect={setOpen} />
         </Suspense>
-        <p className="pointer-events-none absolute inset-x-0 -bottom-2 text-center font-mono text-[11px] text-subtle">
-          <span className="hidden md:inline">drag to spin · </span>click to scatter
+        <p className="pointer-events-none absolute inset-x-0 bottom-0 text-center font-mono text-[11px] text-subtle">
+          {projects.length} projects in orbit · <span className="hidden md:inline">drag to rotate · click</span>
+          <span className="md:hidden">tap</span> a planet
         </p>
       </motion.div>
+      <ProjectSheet project={open} onClose={close} />
     </section>
   )
 }

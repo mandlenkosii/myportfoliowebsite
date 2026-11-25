@@ -7,7 +7,7 @@ import './index.css'
 console.log(
   `%c👋 Hey, curious developer.%c
 This site is React + Three.js. Source: https://github.com/mandlenkosii/myportfoliowebsite
-Try Ctrl/Cmd + K, or click the orb.`,
+Try Ctrl/Cmd + K, or click a planet in the galaxy.`,
   'font: 600 14px system-ui; color: #6b8cff',
   'font: 12px ui-monospace, monospace; color: inherit',
 )

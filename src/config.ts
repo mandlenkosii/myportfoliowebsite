@@ -17,7 +17,7 @@ export const profile = {
   about: [
     "I'm a software engineer in Johannesburg. I like problems with real people on the other end: disciplinary hearings that need to be fair, claims that get lost in paperwork, teachers drowning in marking.",
     'I work mostly in TypeScript, React and Node.js, and I care about the boring parts that make software trustworthy: role-based access, audit trails, tests and CI.',
-    'Outside of the serious stuff, I enjoy making interfaces feel alive. The orb up top is a good example. Go on, click it.',
+    'Outside of the serious stuff, I enjoy making interfaces feel alive. The galaxy up top is every project I have shipped. Go on, click a planet.',
   ],
   now: 'Shipping FairStep, a tool that helps small businesses run fair, documented disciplinary processes.',
   // Set to '' to hide the email button.

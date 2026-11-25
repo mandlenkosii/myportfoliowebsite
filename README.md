@@ -6,7 +6,7 @@ Built with **React 19, TypeScript, Vite, Three.js (React Three Fiber), Motion an
 
 ## What's inside
 
-- **Particle orb:** a WebGL point sphere with a custom shader. It breathes, moves away from your cursor, and scatters when clicked.
+- **Project galaxy:** a WebGL spiral galaxy in the hero where every planet is a project. Flagship builds are larger, ringed planets. Hover for a label, click to open the project, drag to rotate.
 - **Selected work:** a bento grid of six flagship projects with cursor spotlights, headline metrics and small live diagrams (a disciplinary-process stepper for FairStep, an agent ring for Colleague Zero).
 - **Project index:** every public repo, synced live from the GitHub API, with sliding category tabs and expandable rows.
 - **About:** a short intro, working principles, a "now" note, a 2026 timeline and a toolkit marquee.
@@ -42,7 +42,7 @@ npm run preview  # serve the production build
 ```
 src/
   components/   Hero, SelectedWork, ProjectIndex, About, Contact, Dock, CommandPalette …
-  three/Orb.tsx WebGL particle sphere (custom GLSL shader)
+  three/Galaxy.tsx WebGL project galaxy (one planet per repo)
   hooks/        useGitHub (live repo sync), useTheme, useInView
   data/         curated project data and skills
   config.ts     personal details
