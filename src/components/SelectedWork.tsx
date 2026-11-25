@@ -80,7 +80,7 @@ export default function SelectedWork({ projects }: { projects: Project[] }) {
                 </div>
               )}
 
-              {visual && <div className="mt-6">{visual}</div>}
+              {visual && <div className="mt-6 flex flex-1 items-center">{visual}</div>}
 
               <div className="mt-auto pt-6">
                 <h3 className="flex items-center gap-2 text-lg font-semibold tracking-tight">
