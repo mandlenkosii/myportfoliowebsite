@@ -1,4 +1,5 @@
 import About from './components/About'
+import CommandPalette, { openPalette } from './components/CommandPalette'
 import Contact from './components/Contact'
 import Dock from './components/Dock'
 import Hero from './components/Hero'
@@ -6,6 +7,7 @@ import ProjectIndex from './components/ProjectIndex'
 import SelectedWork from './components/SelectedWork'
 import { useGitHub } from './hooks/useGitHub'
 import { useTheme } from './hooks/useTheme'
+import { CommandIcon } from './components/icons'
 
 export default function App() {
   const data = useGitHub()
@@ -21,7 +23,8 @@ export default function App() {
         <About />
         <Contact />
       </main>
-      <Dock />
+      <Dock extra={[{ label: 'Search  ⌘K', onClick: openPalette, icon: <CommandIcon /> }]} />
+      <CommandPalette projects={data.projects} />
     </div>
   )
 }
