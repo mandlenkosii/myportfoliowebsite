@@ -1,3 +1,4 @@
+import Dock from './components/Dock'
 import Hero from './components/Hero'
 import { useGitHub } from './hooks/useGitHub'
 import { useTheme } from './hooks/useTheme'
@@ -12,6 +13,7 @@ export default function App() {
       <main className="relative mx-auto max-w-5xl px-5 md:px-8">
         <Hero projects={data.projects} dark={theme === 'dark'} />
       </main>
+      <Dock />
     </div>
   )
 }
