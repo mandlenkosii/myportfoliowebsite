@@ -10,7 +10,6 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules/three')) return 'three'
-          if (id.includes('@react-three') || id.includes('postprocessing')) return 'r3f'
         },
       },
     },
