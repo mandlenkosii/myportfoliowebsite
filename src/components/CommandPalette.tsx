@@ -6,7 +6,7 @@ import type { Project } from '../data/projects'
 import { useTheme } from '../hooks/useTheme'
 import { lockScroll, scrollToId } from '../lib'
 import ProjectSheet from './ProjectSheet'
-import { ArrowIcon, CopyIcon, GitHubIcon, GridIcon, LinkedInIcon, MoonIcon, SearchIcon } from './icons'
+import { ArrowIcon, CopyIcon, DownloadIcon, FileIcon, GitHubIcon, GridIcon, LinkedInIcon, MoonIcon, SearchIcon } from './icons'
 
 type Cmd = { id: string; group: string; label: string; hint?: string; icon: ReactNode; run: () => void }
 
@@ -63,6 +63,7 @@ export default function CommandPalette({ projects }: { projects: Project[] }) {
       { id: 's-projects', group: 'Navigate', label: 'All projects', icon: <GridIcon className="size-4" />, run: go('projects') },
       { id: 's-about', group: 'Navigate', label: 'About me', icon: <GridIcon className="size-4" />, run: go('about') },
       { id: 's-contact', group: 'Navigate', label: 'Contact', icon: <GridIcon className="size-4" />, run: go('contact') },
+      ...(profile.links.cv ? [{ id: 's-resume', group: 'Navigate', label: 'Résumé', icon: <FileIcon className="size-4" />, run: go('resume') }] : []),
       ...projects.map((p) => ({
         id: `p-${p.repo}`,
         group: 'Projects',
@@ -77,6 +78,21 @@ export default function CommandPalette({ projects }: { projects: Project[] }) {
       { id: 'a-theme', group: 'Actions', label: 'Toggle light / dark', icon: <MoonIcon className="size-4" />, run: () => (close(), toggle()) },
       ...(profile.email
         ? [{ id: 'a-email', group: 'Actions', label: 'Copy email address', hint: profile.email, icon: <CopyIcon className="size-4" />, run: () => (navigator.clipboard?.writeText(profile.email), close()) }]
+        : []),
+      ...(profile.links.cv
+        ? [{
+            id: 'a-cv',
+            group: 'Actions',
+            label: 'Download CV (PDF)',
+            icon: <DownloadIcon className="size-4" />,
+            run: () => {
+              const a = document.createElement('a')
+              a.href = profile.links.cv
+              a.download = profile.links.cv.split('/').pop() ?? 'resume.pdf'
+              a.click()
+              close()
+            },
+          }]
         : []),
       { id: 'a-gh', group: 'Actions', label: 'Open GitHub', icon: <GitHubIcon className="size-4" />, run: () => (window.open(profile.links.github, '_blank'), close()) },
       ...(profile.links.linkedin

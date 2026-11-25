@@ -99,3 +99,14 @@ export const CheckIcon = ({ className = 'size-4' }: P) => (
     <path d="m5 12 5 5L20 7" />
   </svg>
 )
+export const FileIcon = ({ className = 'size-5' }: P) => (
+  <svg viewBox="0 0 24 24" className={className} {...base} aria-hidden>
+    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+    <path d="M14 3v5h5M9 13h6M9 17h4" />
+  </svg>
+)
+export const DownloadIcon = ({ className = 'size-4' }: P) => (
+  <svg viewBox="0 0 24 24" className={className} {...base} aria-hidden>
+    <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
+  </svg>
+)

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { profile } from '../config'
 import Reveal from './Reveal'
 import { ArrowIcon, CopyIcon, GitHubIcon, LinkedInIcon } from './icons'
@@ -39,19 +39,9 @@ function CopyEmail() {
   )
 }
 
-function LocalTime() {
-  const fmt = () => new Date().toLocaleTimeString('en-GB', { timeZone: profile.timezone, hour: '2-digit', minute: '2-digit' })
-  const [t, setT] = useState(fmt)
-  useEffect(() => {
-    const id = setInterval(() => setT(fmt()), 15_000)
-    return () => clearInterval(id)
-  })
-  return <span className="tabular-nums">{t}</span>
-}
-
 export default function Contact() {
   return (
-    <section id="contact" className="scroll-mt-6 pb-32 pt-8 md:pt-12">
+    <section id="contact" className="scroll-mt-6 pt-8 md:pt-12">
       <Reveal>
         <div className="relative overflow-hidden rounded-[2rem] border border-line bg-card px-6 py-14 text-center md:px-12 md:py-20">
           <div className="dot-grid pointer-events-none absolute inset-0 opacity-70" aria-hidden />
@@ -80,23 +70,13 @@ export default function Contact() {
               </a>
             )}
             {profile.links.cv && (
-              <a href={profile.links.cv} target="_blank" rel="noreferrer" className="inline-flex items-center rounded-full px-3 text-sm text-muted hover:bg-card-hover hover:text-fg">
-                CV
+              <a href="#resume" className="inline-flex items-center rounded-full px-3 text-sm text-muted hover:bg-card-hover hover:text-fg">
+                Résumé ↓
               </a>
             )}
           </div>
         </div>
       </Reveal>
-
-      <footer className="mt-10 flex flex-col items-center justify-between gap-2 text-xs text-subtle md:flex-row">
-        <span>
-          © {new Date().getFullYear()} {profile.name}
-        </span>
-        <span>
-          Johannesburg · <LocalTime /> SAST
-        </span>
-        <span>Built with React, Three.js &amp; too much coffee</span>
-      </footer>
     </section>
   )
 }

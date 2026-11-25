@@ -3,11 +3,14 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { profile } from '../config'
 import { useTheme } from '../hooks/useTheme'
 import { scrollToId } from '../lib'
-import { GitHubIcon, GridIcon, HomeIcon, LinkedInIcon, ListIcon, MailIcon, MoonIcon, SunIcon, UserIcon } from './icons'
+import { FileIcon, GitHubIcon, GridIcon, HomeIcon, LinkedInIcon, ListIcon, MailIcon, MoonIcon, SunIcon, UserIcon } from './icons'
 
 type Item = { label: string; icon: ReactNode; onClick?: () => void; href?: string; section?: string }
 
 const fine = typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches
+// Phones get slightly smaller icons so the whole dock fits on a 360px screen.
+const BASE = typeof window !== 'undefined' && window.innerWidth < 640 ? 34 : 40
+const ICON = BASE === 34 ? 16 : 18
 
 function DockIcon({ item, mouseX, active }: { item: Item; mouseX: MotionValue<number>; active: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -18,8 +21,8 @@ function DockIcon({ item, mouseX, active }: { item: Item; mouseX: MotionValue<nu
     const b = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
     return x - b.x - b.width / 2
   })
-  const size = useSpring(useTransform(distance, [-120, 0, 120], [40, fine ? 58 : 40, 40]), { mass: 0.1, stiffness: 160, damping: 13 })
-  const iconSize = useSpring(useTransform(distance, [-120, 0, 120], [18, fine ? 24 : 18, 18]), { mass: 0.1, stiffness: 160, damping: 13 })
+  const size = useSpring(useTransform(distance, [-120, 0, 120], [BASE, fine ? 58 : BASE, BASE]), { mass: 0.1, stiffness: 160, damping: 13 })
+  const iconSize = useSpring(useTransform(distance, [-120, 0, 120], [ICON, fine ? 24 : ICON, ICON]), { mass: 0.1, stiffness: 160, damping: 13 })
 
   const inner = (
     <motion.div
@@ -58,7 +61,7 @@ function DockIcon({ item, mouseX, active }: { item: Item; mouseX: MotionValue<nu
   )
 }
 
-const SECTIONS = ['home', 'work', 'projects', 'about', 'contact']
+const SECTIONS = ['home', 'work', 'projects', 'about', 'contact', 'resume']
 
 export default function Dock({ extra }: { extra?: Item[] }) {
   const mouseX = useMotionValue(Infinity)
@@ -82,6 +85,7 @@ export default function Dock({ extra }: { extra?: Item[] }) {
     { label: 'All projects', section: 'projects', icon: <ListIcon /> },
     { label: 'About', section: 'about', icon: <UserIcon /> },
     { label: 'Contact', section: 'contact', icon: <MailIcon /> },
+    ...(profile.links.cv ? [{ label: 'Résumé', section: 'resume', icon: <FileIcon /> }] : []),
   ].map((i) => ({ ...i, onClick: () => scrollToId(i.section!) }))
 
   const links: Item[] = [
@@ -94,7 +98,7 @@ export default function Dock({ extra }: { extra?: Item[] }) {
     { label: theme === 'dark' ? 'Light mode' : 'Dark mode', onClick: toggle, icon: theme === 'dark' ? <SunIcon /> : <MoonIcon /> },
   ]
 
-  const divider = <span className="mx-1 h-6 w-px self-center bg-line" aria-hidden />
+  const divider = <span className="mx-0.5 h-6 w-px self-center bg-line sm:mx-1" aria-hidden />
 
   return (
     <motion.nav
@@ -104,7 +108,7 @@ export default function Dock({ extra }: { extra?: Item[] }) {
       transition={{ delay: 0.6, type: 'spring', stiffness: 200, damping: 24 }}
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className="fixed bottom-4 left-1/2 z-50 flex h-[60px] items-end gap-1.5 rounded-full border border-line bg-bg/80 px-2.5 pb-2.5 shadow-lg shadow-black/5 backdrop-blur-xl md:gap-2"
+      className="fixed bottom-4 left-1/2 z-50 flex h-[54px] items-end gap-1 rounded-full border border-line bg-bg/80 px-2 pb-2.5 sm:h-[60px] sm:gap-1.5 sm:px-2.5 shadow-lg shadow-black/5 backdrop-blur-xl md:gap-2"
     >
       {nav.map((i) => (
         <DockIcon key={i.label} item={i} mouseX={mouseX} active={active === i.section} />

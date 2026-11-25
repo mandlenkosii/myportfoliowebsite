@@ -2,6 +2,8 @@ import About from './components/About'
 import CommandPalette, { openPalette } from './components/CommandPalette'
 import Contact from './components/Contact'
 import Dock from './components/Dock'
+import Footer from './components/Footer'
+import Resume from './components/Resume'
 import Hero from './components/Hero'
 import ProjectIndex from './components/ProjectIndex'
 import SelectedWork from './components/SelectedWork'
@@ -25,6 +27,8 @@ export default function App() {
         <ProjectIndex projects={data.projects} />
         <About />
         <Contact />
+        <Resume />
+        <Footer />
       </main>
       <Dock extra={[{ label: 'Search  ⌘K', onClick: openPalette, icon: <CommandIcon /> }]} />
       <CommandPalette projects={data.projects} />

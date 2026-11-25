@@ -25,6 +25,6 @@ export const profile = {
   links: {
     github: 'https://github.com/mandlenkosii',
     linkedin: 'https://www.linkedin.com/in/mandla-sikhosana-6687233a8',
-    cv: '', // e.g. '/cv.pdf' (put the file in /public)
+    cv: '/Mandla_Sikhosana_Resume_2026.pdf',
   },
 }
