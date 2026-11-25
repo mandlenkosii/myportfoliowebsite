@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────
 //  Edit this file to personalise the portfolio.
-//  Everything else (repos, stats, timeline) is pulled from GitHub.
+//  Repos, stats and new projects are pulled live from GitHub.
 // ─────────────────────────────────────────────────────────────
 
 export const profile = {
@@ -9,15 +9,17 @@ export const profile = {
   githubUser: 'mandlenkosii',
   role: 'Software Engineer',
   location: 'Johannesburg, South Africa',
-  avatar: 'https://avatars.githubusercontent.com/u/257281540?v=4',
-  // Put a headshot in /public (e.g. /photo.jpg) and set it here to replace the ID schematic.
-  photo: '',
-  tagline: 'I build full-stack web apps that turn messy, paper-based processes into clean digital products.',
+  timezone: 'Africa/Johannesburg',
+  tagline:
+    'I build full-stack web apps that turn slow, paper-based processes into clear, fair, well-tested software.',
+  // The hero cycles through these: "I build software for …"
+  audiences: ['small businesses', 'teachers', 'legal teams', 'communities', 'claimants'],
   about: [
-    'I am a young and developing software engineer who is passionate about software development, with a background in several programming languages and tools.',
-    'Most of what I build is aimed at real problems close to home: Road Accident Fund claim platforms, community centre booking systems, and websites for Johannesburg businesses.',
-    'I work mainly in React, TypeScript and Node.js. I care about role-based access, careful data handling, testing and interfaces that people actually enjoy using.',
+    "I'm a software engineer in Johannesburg. I like problems with real people on the other end: disciplinary hearings that need to be fair, claims that get lost in paperwork, teachers drowning in marking.",
+    'I work mostly in TypeScript, React and Node.js, and I care about the boring parts that make software trustworthy: role-based access, audit trails, tests and CI.',
+    'Outside of the serious stuff, I enjoy making interfaces feel alive. The orb up top is a good example. Go on, click it.',
   ],
+  now: 'Shipping FairStep, a tool that helps small businesses run fair, documented disciplinary processes.',
   // Set to '' to hide the email button.
   email: 'jjuniorsikhosana@gmail.com',
   links: {
@@ -25,5 +27,4 @@ export const profile = {
     linkedin: 'https://www.linkedin.com/in/mandla-sikhosana-6687233a8',
     cv: '', // e.g. '/cv.pdf' (put the file in /public)
   },
-  roles: ['Full-Stack Developer', 'React & TypeScript Engineer', 'Node.js API Builder', 'Problem Solver'],
 }

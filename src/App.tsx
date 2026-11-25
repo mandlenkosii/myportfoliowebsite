@@ -1,14 +1,16 @@
-import { profile } from './config'
+import Hero from './components/Hero'
 import { useGitHub } from './hooks/useGitHub'
+import { useTheme } from './hooks/useTheme'
 
 export default function App() {
-  useGitHub()
+  const data = useGitHub()
+  const { theme } = useTheme()
+
   return (
     <div className="relative min-h-svh">
-      <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[80vh]" aria-hidden />
-      <main className="relative mx-auto max-w-3xl px-5 py-24">
-        <h1 className="text-4xl font-semibold tracking-tight">{profile.name}</h1>
-        <p className="mt-3 text-muted">{profile.tagline}</p>
+      <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[90vh]" aria-hidden />
+      <main className="relative mx-auto max-w-5xl px-5 md:px-8">
+        <Hero projects={data.projects} dark={theme === 'dark'} />
       </main>
     </div>
   )
