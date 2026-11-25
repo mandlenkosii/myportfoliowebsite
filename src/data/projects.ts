@@ -16,6 +16,8 @@ export interface Project {
   stars?: number
   /** True for repos discovered live from GitHub that are not curated below. */
   auto?: boolean
+  /** Headline number shown on featured cards. */
+  metric?: { value: string; label: string }
 }
 
 export const languageColors: Record<string, string> = {
@@ -46,6 +48,75 @@ export const categoryCodes: Record<Category, string> = {
 // dates/stars and appends any new public repos automatically.
 export const curatedProjects: Project[] = [
   {
+    repo: 'fairstep',
+    title: 'FairStep',
+    tagline: 'Fair, documented disciplinary processes',
+    description:
+      'Helps South African small businesses run fair, fully documented disciplinary processes so they stop losing CCMA cases on procedure. It guides an owner from incident to investigation, hearing, outcome and appeal, following the 2025 Code of Good Practice: Dismissal, and blocks unfair steps with a plain-language reason.',
+    highlights: [
+      'Step-by-step case workflow that locks steps until the procedure is fair',
+      'Owner, labour-consultant and employee roles with strict data isolation',
+      'Product requirements with rules R1–R11, a data model and a permission matrix',
+      'CI pipeline, QA checklist and responsive desktop + mobile design',
+    ],
+    tech: ['TypeScript', 'PostgreSQL', 'PL/pgSQL', 'CI', 'RBAC'],
+    category: 'Full-Stack',
+    language: 'TypeScript',
+    live: 'https://fairstep.vercel.app',
+    featured: true,
+    metric: { value: '11', label: 'procedure rules enforced' },
+    created: '2026-11-22',
+    updated: '2026-11-25',
+  },
+  {
+    repo: 'The-Assess-to-Intervene-Colleague',
+    title: 'Colleague Zero',
+    tagline: 'Seven AI agents that mark, self-correct and intervene',
+    description:
+      "A team of seven AI agents that marks a class set against a rubric, re-checks and corrects its own marks against the teacher's anchor scripts, finds each learner's root gap and writes a catch-up task for every learner who needs one. Nothing is sent until the teacher approves.",
+    highlights: [
+      'Planner, Marker, Reviewer, Diagnostician, Builder, Checker and Delivery agents',
+      'Self-correction loops with an open correction log',
+      "Every mark quotes evidence from the learner's script",
+      'Three.js orbit of the agents and a live trace streamed over server-sent events',
+    ],
+    tech: ['JavaScript', 'Node.js', 'Three.js', 'AI agents', 'SSE'],
+    category: 'Full-Stack',
+    language: 'JavaScript',
+    live: 'https://the-assess-to-intervene-colleague.vercel.app',
+    featured: true,
+    metric: { value: '7', label: 'cooperating AI agents' },
+    created: '2026-11-13',
+    updated: '2026-11-14',
+  },
+  {
+    repo: 'elegant-premium-furniture',
+    title: 'Elegant & Premium Furniture',
+    tagline: 'Online furniture shop',
+    description:
+      'An online shop for Elegant & Premium Furniture ("Where luxury meets comfort"), with collections, product pages, search, a bespoke-furniture quotation form and a shopping bag.',
+    highlights: ['Collections, search and product detail routes', 'Bespoke quotation form', 'Mega menu and search overlay'],
+    tech: ['React', 'Vite', 'Tailwind CSS', 'React Router'],
+    category: 'Client Sites',
+    language: 'JavaScript',
+    live: 'https://elegant-premium-furniture.vercel.app',
+    created: '2026-11-16',
+    updated: '2026-11-16',
+  },
+  {
+    repo: 'castle-beds',
+    title: 'Castle Beds',
+    tagline: 'Premium furniture e-commerce',
+    description: 'An e-commerce frontend for Castle Beds, with shop and collection pages, product galleries with variant selectors, a bespoke quotation form and a cart.',
+    highlights: ['Product gallery with variant and quantity selectors', 'Collection filtering', 'Cart toast and scroll restoration'],
+    tech: ['React', 'Vite', 'Tailwind CSS', 'React Router'],
+    category: 'Client Sites',
+    language: 'JavaScript',
+    live: 'https://castle-beds-rosy.vercel.app',
+    created: '2026-11-15',
+    updated: '2026-11-15',
+  },
+  {
     repo: 'claimguard-raf',
     title: 'ClaimGuard RAF',
     tagline: 'Claim intelligence & assurance platform',
@@ -61,6 +132,7 @@ export const curatedProjects: Project[] = [
     category: 'Full-Stack',
     language: 'TypeScript',
     featured: true,
+    metric: { value: '6', label: 'roles with scoped access' },
     created: '2026-11-04',
     updated: '2026-11-09',
   },
@@ -81,6 +153,7 @@ export const curatedProjects: Project[] = [
     language: 'TypeScript',
     live: 'https://riverside-community-hub-opal.vercel.app',
     featured: true,
+    metric: { value: '5', label: 'modules in one platform' },
     created: '2026-09-12',
     updated: '2026-09-14',
   },
@@ -100,6 +173,7 @@ export const curatedProjects: Project[] = [
     language: 'TypeScript',
     live: 'https://earth-dashboard-zeta.vercel.app',
     featured: true,
+    metric: { value: '2', label: 'live public data feeds' },
     created: '2026-08-30',
     updated: '2026-08-31',
   },
@@ -119,6 +193,7 @@ export const curatedProjects: Project[] = [
     category: 'Full-Stack',
     language: 'JavaScript',
     featured: true,
+    metric: { value: 'FIFO', label: 'waitlist with expiring holds' },
     created: '2026-09-17',
     updated: '2026-09-18',
   },
@@ -133,8 +208,7 @@ export const curatedProjects: Project[] = [
     category: 'Full-Stack',
     language: 'TypeScript',
     live: 'https://neighbourhood-marketplace-orpin.vercel.app',
-    featured: true,
-    created: '2026-07-03',
+        created: '2026-07-03',
     updated: '2026-07-29',
   },
   {
@@ -148,8 +222,7 @@ export const curatedProjects: Project[] = [
     category: 'Web Apps',
     language: 'TypeScript',
     live: 'https://road-claims-portal.vercel.app',
-    featured: true,
-    created: '2026-08-18',
+        created: '2026-08-18',
     updated: '2026-08-18',
   },
   {
@@ -222,8 +295,7 @@ export const curatedProjects: Project[] = [
     category: 'Client Sites',
     language: 'TypeScript',
     live: 'https://icattorneyswebsite.vercel.app',
-    featured: true,
-    created: '2026-10-30',
+        created: '2026-10-30',
     updated: '2026-11-02',
   },
   {
@@ -249,8 +321,7 @@ export const curatedProjects: Project[] = [
     category: 'Client Sites',
     language: 'JavaScript',
     live: 'https://nestora-house.vercel.app',
-    featured: true,
-    created: '2026-11-01',
+        created: '2026-11-01',
     updated: '2026-11-01',
   },
   {

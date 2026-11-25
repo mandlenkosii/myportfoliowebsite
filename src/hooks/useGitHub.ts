@@ -29,8 +29,10 @@ export interface GitHubData {
   live: boolean
 }
 
-const CACHE_KEY = `gh-cache-${profile.githubUser}`
+const CACHE_KEY = `gh-cache-v2-${profile.githubUser}`
 const CACHE_TTL = 1000 * 60 * 30
+/** Repos that should never be listed (e.g. this portfolio itself). */
+const HIDDEN = new Set(['myportfoliowebsite', profile.githubUser.toLowerCase()])
 
 function readCache(): { at: number; repos: GhRepo[]; user: GhUser } | null {
   try {
@@ -73,7 +75,7 @@ function merge(repos: GhRepo[]): Project[] {
 
   const known = new Set(curatedProjects.map((p) => p.repo.toLowerCase()))
   const extra: Project[] = repos
-    .filter((r) => !known.has(r.name.toLowerCase()) && !r.fork && !r.archived && r.name.toLowerCase() !== profile.githubUser.toLowerCase())
+    .filter((r) => !known.has(r.name.toLowerCase()) && !r.fork && !r.archived && !HIDDEN.has(r.name.toLowerCase()))
     .map((r) => ({
       repo: r.name,
       title: prettify(r.name),
