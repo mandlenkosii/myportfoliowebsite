@@ -1,5 +1,6 @@
 import Dock from './components/Dock'
 import Hero from './components/Hero'
+import SelectedWork from './components/SelectedWork'
 import { useGitHub } from './hooks/useGitHub'
 import { useTheme } from './hooks/useTheme'
 
@@ -12,6 +13,7 @@ export default function App() {
       <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[90vh]" aria-hidden />
       <main className="relative mx-auto max-w-5xl px-5 md:px-8">
         <Hero projects={data.projects} dark={theme === 'dark'} />
+        <SelectedWork projects={data.projects} />
       </main>
       <Dock />
     </div>
